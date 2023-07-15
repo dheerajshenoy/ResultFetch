@@ -24,10 +24,9 @@ TO : USN Ending number
 
 USN_pattern = "22MSRPH0"
 FROM = 1
-TO = 4
+TO = 22
 LINK = "http://results.jainuniversity.ac.in/webResult.aspx?id=CENTER+FOR+POST+GRADUATE+STUDIES&value=MAY-2023"
 TIME_TO_WAIT = 30
-
 
 # Print iterations progress
 
@@ -51,7 +50,6 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
     # Print New Line on Complete
     if iteration == total: 
         print()
-
 
 def fetchResults(FROM, TO):
     opts = Options()
@@ -99,7 +97,6 @@ def fetchResults(FROM, TO):
     sortedList = ranklist.sort_values("SGPA", ascending = False) # sorting the list w.r.t SGPA
     sortedList.index = np.arange(1, len(sortedList) + 1) # changing index to start from 1 instead of the default from 0
     print(tabulate(sortedList, headers='keys', tablefmt='psql'))
-
 
 if __name__ == "__main__":
     fetchResults(FROM, TO)

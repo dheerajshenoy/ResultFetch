@@ -31,7 +31,7 @@ Add the month-year string to variables, e.g: link1, link2, link3.... etc. and th
 
 USN_pattern = "22MSRPH0"
 FROM = 1
-TO = 5
+TO = 23
 LINK = "http://results.jainuniversity.ac.in/webResult.aspx?id=CENTER+FOR+POST+GRADUATE+STUDIES&value={}"
 
 link1 = LINK.format("DEC-2022")

@@ -25,7 +25,7 @@ TO : USN Ending number
 USN_pattern = "22MSRPH0"
 FROM = 1
 TO = 23
-LINK = "https://results.jainuniversity.ac.in/webResult.aspx?id=CENTER+FOR+POST+GRADUATE+STUDIES&value=NOV-2023"
+LINK = "https://results.jainuniversity.ac.in/webResult.aspx?id=CENTER+FOR+POST+GRADUATE+STUDIES&value=DEC-2022"
 TIME_TO_WAIT = 30
 
 # Print iterations progress
@@ -51,7 +51,7 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
     if iteration == total: 
         print()
 
-def fetchResults(FROM, TO):
+def fetchResults(FROM, TO, fileName = None):
     opts = Options()
     opts.add_argument("--headless")
     tmpString = ""
@@ -86,18 +86,21 @@ def fetchResults(FROM, TO):
         nextBtn = driver.find_element(By.ID, "btnnextResult")
         nextBtn.click()
 
+    if fileName != None:
+        ranklist.to_csv(fileName)
+
     driver.close()
 
     pd.options.display.max_colwidth = None
 
-    sortedList = ranklist.sort_values("SGPA", ascending = False, ignore_index = True) # sorting the list w.r.t SGPA
-    sortedList = sortedList.rename_axis(index = "Rank") # adding title to the index column of the DataFrame
+    # sortedList = ranklist.sort_values("SGPA", ascending = False, ignore_index = True) # sorting the list w.r.t SGPA
+    # sortedList = sortedList.rename_axis(index = "Rank") # adding title to the index column of the DataFrame
 
-    #sortedList = sortedList.groupby(["Name"]).mean()
-    sortedList = sortedList.groupby(["SGPA"])["Name"].apply(', '.join).reset_index()
-    sortedList = ranklist.sort_values("SGPA", ascending = False) # sorting the list w.r.t SGPA
-    sortedList.index = np.arange(1, len(sortedList) + 1) # changing index to start from 1 instead of the default from 0
-    print(tabulate(sortedList, headers='keys', tablefmt='psql'))
+    # #sortedList = sortedList.groupby(["Name"]).mean()
+    # sortedList = sortedList.groupby(["SGPA"])["Name"].apply(', '.join).reset_index()
+    # sortedList = ranklist.sort_values("SGPA", ascending = False) # sorting the list w.r.t SGPA
+    # sortedList.index = np.arange(1, len(sortedList) + 1) # changing index to start from 1 instead of the default from 0
+    # print(tabulate(sortedList, headers='keys', tablefmt='psql'))
 
 if __name__ == "__main__":
-    fetchResults(FROM, TO)
+    fetchResults(FROM, TO, "sem1.csv")

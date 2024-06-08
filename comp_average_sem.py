@@ -8,7 +8,7 @@
 import pandas as pd
 from IPython.display import HTML
 
-files = ["sem1.csv", "sem2.csv", "sem3.csv"]
+files = ["sem1.csv", "sem2.csv", "sem3.csv", "sem4.csv"]
 colnames = ["USN", "Name", "SGPA"]
 dfs = [] # store dataframes
 
@@ -19,18 +19,26 @@ result_df = pd.merge(dfs[0], dfs[1], on='USN', how='left')
 result_df = result_df.drop(columns='Name_y')
 result_df = pd.merge(result_df, dfs[2], on='USN', how='left')
 result_df = result_df.drop(columns='Name')
+result_df = pd.merge(result_df, dfs[3], on='USN', how='left')
+result_df = result_df.drop(columns='Name')
+
+print(result_df)
+result_df.to_csv("sem_4_avg.csv", na_rep='NaN', index = False)
+exit(0)
 
 result_df.rename(columns={"SGPA_x" : "SEM 1",
                           "SGPA_y" : "SEM 2",
                           "SGPA" : "SEM 3",
+                          "ss" : "SEM 4",
                           "Name_x" : "Name"}, inplace=True)
+print(result_df)
 
-result_df["TOTAL"] = result_df["SEM 1"] + result_df["SEM 2"] + result_df["SEM 3"]
-result_df["AVG"] = result_df["TOTAL"] / 3
+result_df["TOTAL"] = result_df["SEM 1"] + result_df["SEM 2"] + result_df["SEM 3"] + result_df["SEM 4"]
+result_df["AVG"] = result_df["TOTAL"] / 4
 result_df = result_df.sort_values(by='AVG', ascending=False, na_position='last')
 result_df.reset_index(drop = True, inplace = True)
-result_df.drop(columns={"SEM 1", "SEM 2", "SEM 3", "TOTAL"}, inplace = True)
-result_df.to_csv("sem_3_avg.csv", na_rep='NaN', index = False)
+result_df.drop(columns={"SEM 1", "SEM 2", "SEM 3", "SEM 4", "TOTAL"}, inplace = True)
+result_df.to_csv("sem_4_avg.csv", na_rep='NaN', index = False)
 print(result_df)
 html_table = result_df.to_html(index=False)
 

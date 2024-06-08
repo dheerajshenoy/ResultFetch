@@ -25,7 +25,9 @@ TO : USN Ending number
 USN_pattern = "22MSRPH0"
 FROM = 1
 TO = 23
-LINK = "https://results.jainuniversity.ac.in/webResult.aspx?id=CENTER+FOR+POST+GRADUATE+STUDIES&value=NOV-2023"
+LINK = "https://results.jainuniversity.ac.in/webResult.aspx?id=CENTER+FOR+POST+GRADUATE+STUDIES&value=DEC-2022"
+LINK2 = "https://results.jainuniversity.ac.in/webResult.aspx?id=CENTER+FOR+POST+GRADUATE+STUDIES&value=MAY-2023"
+LINK3 = "https://results.jainuniversity.ac.in/webResult.aspx?id=CENTER+FOR+POST+GRADUATE+STUDIES&value=NOV-2023"
 TIME_TO_WAIT = 30
 
 # Print iterations progress

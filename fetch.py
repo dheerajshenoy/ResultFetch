@@ -23,7 +23,7 @@ def fetchResults(FROM, TO):
     opts = Options()
     opts.add_argument("--headless")
 
-    link = "http://results.jainuniversity.ac.in/webResult.aspx?id=CENTER+FOR+POST+GRADUATE+STUDIES&value=MAY-2023"
+    link = "http://results.jainuniversity.ac.in/webResult.aspx?id=CENTER+FOR+POST+GRADUATE+STUDIES&value=MAY-2024"
     a = ""
     name = ""
     sgpa = ""
